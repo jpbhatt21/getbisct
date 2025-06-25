@@ -361,13 +361,13 @@ run_application() {
     cd "$CLONE_DIR/bisct-server"
 
     # Check and set NODE_ENV if not already declared
-    if [ -z "$NODE_ENV" ]; then
-        print_status "NODE_ENV not set, exporting NODE_ENV=production..."
-        export NODE_ENV=production
-        print_success "Exported NODE_ENV=production"
-    else
-        print_warning "NODE_ENV already set to: $NODE_ENV"
-    fi
+    # if [ -z "$NODE_ENV" ]; then
+    #     print_status "NODE_ENV not set, exporting NODE_ENV=production..."
+    #     export NODE_ENV=production
+    #     print_success "Exported NODE_ENV=production"
+    # else
+    #     print_warning "NODE_ENV already set to: $NODE_ENV"
+    # fi
 
     # Check and set JWT_SECRET if not already declared
     if [ -z "$JWT_SECRET" ]; then
@@ -403,16 +403,15 @@ run_application() {
     fi
 
     # Display current environment variables for verification
-    print_status "Current environment variables:"
-    echo "NODE_ENV: $NODE_ENV"
+    print_status "Current environment variable(s):"
     echo "JWT_SECRET: ${JWT_SECRET:0:8}... (truncated for security)"
 
-    # Remove any existing .env file if present (since we're using system env vars)
-    if [ -f ".env" ]; then
-        print_warning "Removing existing .env file since we're using system environment variables..."
-        rm .env
-        print_success ".env file removed"
-    fi
+    # # Remove any existing .env file if present (since we're using system env vars)
+    # if [ -f ".env" ]; then
+    #     print_warning "Removing existing .env file since we're using system environment variables..."
+    #     rm .env
+    #     print_success ".env file removed"
+    # fi
 
     # Run the complete build and start sequence
     print_status "Running npm install, build, and start sequence..."
